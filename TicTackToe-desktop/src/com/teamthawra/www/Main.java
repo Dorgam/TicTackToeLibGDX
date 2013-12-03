@@ -6,10 +6,10 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 public class Main {
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-		cfg.title = "TicTackToe";
-		cfg.useGL20 = false;
-		cfg.width = 480;
-		cfg.height = 320;
+		cfg.title = "Tic Tack Toe";
+		cfg.useGL20 = true;
+		cfg.width = 380;
+		cfg.height = 630;
 		
 		new LwjglApplication(new XO(), cfg);
 	}
