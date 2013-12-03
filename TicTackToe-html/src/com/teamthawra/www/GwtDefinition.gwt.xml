@@ -3,7 +3,7 @@
 <module>
 	<inherits name='com.badlogic.gdx.backends.gdx_backends_gwt' />
 	<inherits name='aurelienribon.tweenengine' />
-	<inherits name='MyGdxGame' />
+	<inherits name='XO' />
 	<entry-point class='com.teamthawra.www.client.GwtLauncher' />
-	<set-configuration-property name="gdx.assetpath" value="../tictactoe-android/assets" />
+	<set-configuration-property name="gdx.assetpath" value="../TicTackToe-android/assets" />
 </module>

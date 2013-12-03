@@ -1,6 +1,6 @@
 package com.teamthawra.www.client;
 
-import com.teamthawra.www.MyGdxGame;
+import com.teamthawra.www.XO;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
@@ -14,6 +14,6 @@ public class GwtLauncher extends GwtApplication {
 
 	@Override
 	public ApplicationListener getApplicationListener () {
-		return new MyGdxGame();
+		return new XO();
 	}
 }
