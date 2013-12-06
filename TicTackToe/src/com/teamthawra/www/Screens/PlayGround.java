@@ -10,12 +10,12 @@ import com.teamthawra.www.*;
 
 public class PlayGround implements Screen {
 	
-	XO game;
+	MainMenu game;
 	private Texture gridTex;
 	private Sprite grid;
 	private SpriteBatch batch;
 
-	public PlayGround(XO game){
+	public PlayGround(MainMenu game){
 		this.game = game;
 	}
 	

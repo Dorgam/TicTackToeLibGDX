@@ -1,17 +1,18 @@
 package com.teamthawra.www;
 import com.badlogic.gdx.Game;
+import com.teamthawra.www.Screens.MainMenu;
 import com.teamthawra.www.Screens.PlayGround;
 
 public class XO extends Game {
 	
-	PlayGround playground;
+	MainMenu main;
 
 	@Override
 	public void create() {
+	
+	main = new MainMenu(this);
 		
-		playground = new PlayGround(this);
-		
-		setScreen(playground);
+	setScreen(main);
 		
 	}
 
