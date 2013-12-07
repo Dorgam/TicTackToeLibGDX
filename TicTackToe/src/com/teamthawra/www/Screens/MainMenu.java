@@ -101,7 +101,6 @@ public class MainMenu implements Screen{
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				stage.clear();
 				game.setScreen(playGround);
-				System.out.println("switch to play ground");
 				return true;
 			}
 			
