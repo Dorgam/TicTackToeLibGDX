@@ -2,6 +2,7 @@ package com.teamthawra.www.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.teamthawra.www.XO;
+import com.teamthawra.www.Zone;
 
 public class MainMenu implements Screen{
 	
@@ -22,16 +24,17 @@ public class MainMenu implements Screen{
 	TextButton exitButton;
 	TextButtonStyle exitButtonStyle;
 	//Fonts
-	BitmapFont title;
-	BitmapFont defaultFont;
+	public static BitmapFont title;
+	public static BitmapFont defaultFont;
 	//Default Initializing
 	Skin skin;
 	TextureAtlas atlas;
 	Stage stage;
 	SpriteBatch batch;
 	//Screen Switching
-	XO game;
+	public static XO game;
 	PlayGround playGround;
+	End game2;
 	
 	
 	public MainMenu (XO game) {
@@ -39,10 +42,16 @@ public class MainMenu implements Screen{
 		this.game = game;
 		
 	}
+	
+	public MainMenu (End game2){
+		this.game2 = game2;
+	}
 
 	@Override
 	public void render(float delta) {
-	
+		
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		stage.act(delta);
 		//Stage Drawing
 		batch.begin();
@@ -64,6 +73,10 @@ public class MainMenu implements Screen{
 
 	@Override
 	public void show() {
+		
+		//Restarting
+		End.setWinner(0);
+		Zone.counter = 1;
 		
 		//Creating the defaults
 		playGround = new PlayGround(this);
