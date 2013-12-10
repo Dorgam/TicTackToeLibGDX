@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
@@ -34,7 +36,10 @@ public class MainMenu implements Screen{
 	//Screen Switching
 	public static XO game;
 	PlayGround playGround;
-	End game2;
+	End end;
+	//Label and label style
+	Label label;
+	LabelStyle labelStyle;
 	
 	
 	public MainMenu (XO game) {
@@ -43,24 +48,26 @@ public class MainMenu implements Screen{
 		
 	}
 	
-	public MainMenu (End game2){
-		this.game2 = game2;
+	public MainMenu (End end){
+		this.end = end;
 	}
 
 	@Override
 	public void render(float delta) {
 		
+		//Clears the old screen
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		//Firing the listenners
 		stage.act(delta);
 		//Stage Drawing
 		batch.begin();
 		stage.draw();
 		batch.end();
 		//Text Drawing
-		batch.begin();
-		title.draw(batch, "Tick-Tack-Thawra", 60 , 510);
-		batch.end();
+//		batch.begin();
+//		title.draw(batch, "Tick-Tack-Thawra", 60 , 510);
+//		batch.end();
 		
 		
 	}
@@ -74,6 +81,15 @@ public class MainMenu implements Screen{
 	@Override
 	public void show() {
 		
+		title = new BitmapFont(Gdx.files.internal("fonts/default.fnt"), Gdx.files.internal("fonts/default_0.png"), false);
+		title.setScale(1.1f);
+		
+		labelStyle = new LabelStyle();
+		labelStyle.font = title;
+		
+		label = new Label("Tick-Tack-Thawra", labelStyle);
+		label.setPosition(65, 505);
+		
 		//Restarting
 		End.setWinner(0);
 		Zone.counter = 1;
@@ -81,9 +97,8 @@ public class MainMenu implements Screen{
 		//Creating the defaults
 		playGround = new PlayGround(this);
 		batch = new SpriteBatch();
-		defaultFont = new BitmapFont(Gdx.files.internal("fonts/default.fnt"), false);
-		title = new BitmapFont(Gdx.files.internal("fonts/default.fnt"), false);
-		title.setScale(1.2f);
+		defaultFont = new BitmapFont(Gdx.files.internal("fonts/default.fnt"), Gdx.files.internal("fonts/default_0.png"), false);
+		
 		atlas = new TextureAtlas("images/mainmenu/mainmenu.atlas");
 		skin = new Skin(atlas);
 		//Play Button Creation
@@ -106,6 +121,8 @@ public class MainMenu implements Screen{
 		//Stage default listening
 		stage = new Stage(380, 630, true);
 		Gdx.input.setInputProcessor(stage);
+		
+		stage.addActor(label);
 		
 		
 		//Play Button Listener
@@ -156,7 +173,13 @@ public class MainMenu implements Screen{
 
 	@Override
 	public void dispose() {
-	
+		
+		//Disposing
+		title.dispose();
+		defaultFont.dispose();
+		skin.dispose();
+		atlas.dispose();
+		batch.dispose();
 		
 	}
 	

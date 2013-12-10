@@ -1,0 +1,2 @@
+# Module com.teamthawra.www.GwtDefinition
+# RPC service class, partial path of RPC policy file

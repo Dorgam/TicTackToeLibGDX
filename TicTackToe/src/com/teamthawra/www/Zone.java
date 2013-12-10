@@ -6,11 +6,11 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class Zone {
 	
+	//Creating the instance variables
 	double x;
 	double y;
 	int player;
@@ -67,9 +67,8 @@ public class Zone {
 	}
 	
 	
-
+	//Setters and getters
 	public int getPlayer() {
-		// TODO Auto-generated method stub
 		return player ;
 	}
 
@@ -80,7 +79,6 @@ public class Zone {
 	public void setClicked(boolean isClicked) {
 		this.isClicked = isClicked;
 	}
-	
 	
 	
 	

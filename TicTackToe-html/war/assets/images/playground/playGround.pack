@@ -1,0 +1,33 @@
+
+playGround.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+empty
+  rotate: false
+  xy: 1, 1
+  size: 80, 115
+  orig: 80, 115
+  offset: 0, 0
+  index: -1
+o
+  rotate: false
+  xy: 83, 1
+  size: 80, 115
+  orig: 80, 115
+  offset: 0, 0
+  index: -1
+x
+  rotate: false
+  xy: 165, 1
+  size: 80, 115
+  orig: 80, 115
+  offset: 0, 0
+  index: -1
+restart
+  rotate: false
+  xy: 247, 36
+  size: 106, 80
+  orig: 106, 80
+  offset: 0, 0
+  index: -1

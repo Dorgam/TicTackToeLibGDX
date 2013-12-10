@@ -2,18 +2,19 @@ package com.teamthawra.www.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.teamthawra.www.XO;
 import com.teamthawra.www.Zone;
 
 public class PlayGround implements Screen {
@@ -24,12 +25,13 @@ public class PlayGround implements Screen {
 	Image gridImage ;
 	TextButton restart ;
 	TextButtonStyle style ;
-	String turn ;
+	CharSequence turn = "X111" ;
 	//Image restart ;
 	SpriteBatch batch;
 	Zone[] zones = new Zone[9];
 	End end;
-	XO game1;
+	Label label;
+	LabelStyle labelStyle;
 	
 	
 	
@@ -49,7 +51,17 @@ public class PlayGround implements Screen {
 	@Override
 	public void show() {
 		
-		game1 = new XO();
+		labelStyle = new LabelStyle();
+		labelStyle.font = MainMenu.title;
+		labelStyle.fontColor = Color.WHITE ;
+		label = new Label(turn, labelStyle);
+		
+		
+		label.setPosition(120, 550);
+		
+		
+		
+		
 		end = new End(this);
 		
 		//Draw Grid
@@ -104,6 +116,8 @@ public class PlayGround implements Screen {
 		for(int i = 0 ; i< zones.length ; i++)
 			stage.addActor(zones[i].getImage());
 		stage.addActor(restart);
+		stage.addActor(label);
+		label.setVisible(true);
 		Gdx.input.setInputProcessor(stage);
 		
 		
@@ -117,22 +131,26 @@ public class PlayGround implements Screen {
 		//It clears the older screen
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		System.out.println(Zone.counter);
+		
 		if(Zone.counter%2==0)
-		{turn = "O's TURN";}
+		{label.setText("O's TURN");}
 		else
-		{turn = "X's TURN";}
+		{label.setText("X's TURN");}
+		
+		System.out.println(label.getText());
 		
 		check();
 		
 		//Drawing the stage and it's children's
 		batch.begin();
+		//label.draw(batch, 1);
 		stage.draw();
 		batch.end();
 		
-		batch.begin();
-		MainMenu.title.draw(batch,turn, 114 , 570);
-		batch.end();
+		//Drawing the certain turn
+		//batch.begin();
+		//MainMenu.title.draw(batch,turn, 114 , 570);
+		//batch.end();
 		
 		//Fires the listeners
 		stage.act(delta);
@@ -207,7 +225,7 @@ public class PlayGround implements Screen {
 		{System.out.println("Player 1 wins");
 		End.setWinner(1);
 		stage.clear();
-		MainMenu.game.setScreen(end);;
+		MainMenu.game.setScreen(end);
 		}
 		if(zones[2].getPlayer()==2 && zones[4].getPlayer()==2 && zones[6].getPlayer()==2)
 		{System.out.println("Player 2 wins");
@@ -238,6 +256,10 @@ public class PlayGround implements Screen {
 
 	@Override
 	public void dispose() {
+		
+		stage.dispose();
+		gridTex.dispose();
+		batch.dispose();
 		
 		
 	}

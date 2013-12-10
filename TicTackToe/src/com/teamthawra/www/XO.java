@@ -1,17 +1,19 @@
 package com.teamthawra.www;
 import com.badlogic.gdx.Game;
 import com.teamthawra.www.Screens.MainMenu;
-import com.teamthawra.www.Screens.PlayGround;
 
 public class XO extends Game {
 	
+	//Screen going to
 	MainMenu main;
 
 	@Override
 	public void create() {
 	
+	//Taking the certain screen through the screen you are going to consstructor
 	main = new MainMenu(this);
 		
+	//Setting the screen
 	setScreen(main);
 		
 	}
